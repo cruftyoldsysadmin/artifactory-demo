@@ -53,7 +53,8 @@ jobs:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
           password: ${{ secrets.RT_APIKEY }}
-          user: ${{ secrets.RT_USER }}
+          #user: ${{ secrets.RT_USER }}
+          user: cruftyold@gmail.com
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
       - name: download from artifactory
         if: success()
