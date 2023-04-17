@@ -52,6 +52,7 @@ jobs:
           args: u "dist/*" "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}" --recursive=true --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}}
   artifactoryDownload:
     runs-on : ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go 1.19.4
