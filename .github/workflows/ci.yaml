@@ -61,9 +61,6 @@ jobs:
       - name: cleanup
         if: success()
         run: docker image rm -f nomadops/action-runfrog-cli:${{ steps.tag_version.outputs.new_tag }}
-      - name: Remove artifactory server
-        if: success()
-        run: jf c rem rt-server
       - name: download from artifactory
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
         with:
@@ -71,5 +68,6 @@ jobs:
           credentials type: 'username'
           password: ${{ secrets.RT_APIKEY }}
           args: rt dl "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}/artifactory-demo" "dist/artifactory-demo" --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}
+          reuse_server: true
 
           
