@@ -69,4 +69,3 @@ jobs:
           credentials type: 'apikey'
           apikey: ${{ secrets.RT_APIKEY }}
           args: rt dl "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}/artifactory-demo" "dist/artifactory-demo" --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}
-
