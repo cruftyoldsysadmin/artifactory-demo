@@ -76,8 +76,8 @@ jobs:
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
         with:
           url: ${{ secrets.RT_URL }}
-          credentials type: 'apikey'
-          apikey: ${{ secrets.RT_APIKEY }}
+          credentials type: 'username'
+          password: ${{ secrets.RT_APIKEY }}
           args: rt dl "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}/artifactory-demo" "dist/artifactory-demo" --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}
 
           
