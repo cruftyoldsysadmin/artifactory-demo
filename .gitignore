@@ -24,4 +24,4 @@ bin/linux*
 vendor/
 .vscode/
 .DS_Store
-dist/artifactory-demo
+dist/artifactory-demoartifactory-demo
