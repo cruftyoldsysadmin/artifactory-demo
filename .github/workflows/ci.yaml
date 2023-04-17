@@ -24,7 +24,7 @@ jobs:
         run: go build -o dist/artifactory-demo
       - name: Bump version and push tag
         #uses: anothrNick/github-tag-action@1.36.0
-        uses: anothrNick/github-tag-action
+        uses: anothrNick/github-tag-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
