@@ -49,7 +49,8 @@ jobs:
           url: ${{ secrets.RT_URL }}
           credentials type: 'apikey'
           apikey: ${{ secrets.RT_APIKEY }}
-          args: u "dist/*" "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}" --recursive=true --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}}
+          #args: u "dist/*" "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}" --recursive=true --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}}
+          args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
   artifactoryDownload:
     runs-on : ubuntu-latest
     needs: build

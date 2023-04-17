@@ -1,5 +1,8 @@
 version: 1
 type: go
 resolver:
+  repo: go-remote
+  serverId: rt-server
+deployer:
   repo: go
   serverId: rt-server
