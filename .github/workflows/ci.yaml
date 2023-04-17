@@ -63,15 +63,9 @@ jobs:
           user: cruftyold@gmail.com
           #args: u "dist/*" "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}" --recursive=true --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}}
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
-  artifactoryDownload:
-    runs-on : ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Go 1.19.4
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.19.4
+      - name: cleanup
+        if: success()
+        run: docker image rm -f nomadops/action-runfrog-cli:${{ steps.tag_version.outputs.new_tag }}}
       - name: download from artifactory
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
         with:
