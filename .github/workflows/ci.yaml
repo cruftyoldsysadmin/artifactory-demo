@@ -64,5 +64,3 @@ jobs:
           password: ${{ secrets.RT_APIKEY }}
           user: ${{ secrets.RT_USER }}
           args: rt dl "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}/artifactory-demo" "dist/artifactory-demo" --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}
-
-          
