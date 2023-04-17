@@ -14,17 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go 1.19.4
+        if: success()
         uses: actions/setup-go@v4
         with:
           go-version: 1.19.4
       - name: Get dependencies
+        if: success()
         run: go get -v -t -d ./...
       - name: tidy
+        if: success()
         run: go mod tidy
       - name: Build
+        if: success()
         #run: go build -v ./... -o ./dist/artifactory-demo
         run: go build -o dist/artifactory-demo
       - name: Bump version and push tag
+        if: success()
         #uses: anothrNick/github-tag-action@1.36.0
         uses: anothrNick/github-tag-action@v1
         env:
@@ -35,17 +40,21 @@ jobs:
           DEFAULT_BUMP: patch
         id: tag_version
       - name: Create a GitHub release
+        if: success()
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }} 
       - uses: actions/checkout@v3
+        if: success()
       - name: Set up Go 1.19.4
+        if: success()
         uses: actions/setup-go@v4
         with:
           go-version: 1.19.4
       - name: publish to artifactory
+        if: success()
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
         with:
           url: ${{ secrets.RT_URL }}
