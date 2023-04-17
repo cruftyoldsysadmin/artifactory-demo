@@ -53,7 +53,7 @@ jobs:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
           password: ${{ secrets.RT_APIKEY }}
-          user: cruftyold@gmail.com
+          user: ${{ secrets.RT_USER }}
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
       - name: cleanup
         if: success()
