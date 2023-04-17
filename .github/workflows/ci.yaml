@@ -47,7 +47,7 @@ jobs:
         uses: advancedcsg-open/action-jfrog-cli@master
         with:
           url: ${{ secrets.RT_URL }}
-          credentials-type: 'apikey'
+          credentials type: 'apikey'
           apikey: ${{ secrets.RT_APIKEY }}
           args: u "dist/*" "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}" --recursive=true --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}}
   artifactoryDownload:
