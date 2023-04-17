@@ -39,13 +39,6 @@ jobs:
           VERBOSE: true
           DEFAULT_BUMP: patch
         id: tag_version
-      - name: Create a GitHub release
-        if: success()
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }} 
       - name: publish to artifactory
         if: success()
         uses: nomadops/jfrog-cli-action@v0.0.6
@@ -56,6 +49,13 @@ jobs:
           #user: ${{ secrets.RT_USER }}
           user: cruftyold@gmail.com
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
+      - name: Create a GitHub release
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }} 
       - name: download from artifactory
         if: success()
         uses: nomadops/jfrog-cli-action@v0.0.6
