@@ -48,11 +48,6 @@ jobs:
           body: ${{ steps.tag_version.outputs.changelog }} 
       - uses: actions/checkout@v3
         if: success()
-      - name: Set up Go 1.19.4
-        if: success()
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.19.4
       - name: publish to artifactory
         if: success()
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
