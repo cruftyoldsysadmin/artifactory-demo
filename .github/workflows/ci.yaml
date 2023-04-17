@@ -60,7 +60,7 @@ jobs:
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
       - name: cleanup
         if: success()
-        run: docker image rm -f nomadops/action-runfrog-cli:${{ steps.tag_version.outputs.new_tag }}}
+        run: docker image rm -f nomadops/action-runfrog-cli:${{ steps.tag_version.outputs.new_tag }}
       - name: download from artifactory
         uses: cruftyoldsysadmin/action-jfrog-cli@update-syntax
         with:
