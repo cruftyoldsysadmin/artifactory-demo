@@ -21,7 +21,7 @@ jobs:
         run: go get -v -t -d ./...
       - name: Build
         #run: go build -v ./... -o ./dist/artifactory-demo
-        run: go build -o /dist/artifactory-demo
+        run: go build -o dist/artifactory-demo
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
         env:
