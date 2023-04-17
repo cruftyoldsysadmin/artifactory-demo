@@ -55,10 +55,8 @@ jobs:
           password: ${{ secrets.RT_APIKEY }}
           user: ${{ secrets.RT_USER }}
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
-      - name: cleanup
-        if: success()
-        run: docker image rm -f nomadops/jfrog-cli-action:${{ steps.tag_version.outputs.new_tag }}
       - name: download from artifactory
+        if: success()
         uses: nomadops/jfrog-cli-action@v0.0.4
         with:
           url: ${{ secrets.RT_URL }}
