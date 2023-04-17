@@ -48,7 +48,7 @@ jobs:
           body: ${{ steps.tag_version.outputs.changelog }} 
       - name: publish to artifactory
         if: success()
-        uses: nomadops/action-jfrog-cli@latest
+        uses: nomadops/jfrog-cli-action@latest
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
@@ -57,9 +57,9 @@ jobs:
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
       - name: cleanup
         if: success()
-        run: docker image rm -f nomadops/action-runfrog-cli:${{ steps.tag_version.outputs.new_tag }}
+        run: docker image rm -f nomadops/jfrog-cli-action:${{ steps.tag_version.outputs.new_tag }}
       - name: download from artifactory
-        uses: nomadops/action-jfrog-cli@latest
+        uses: nomadops/jfrog-cli-action@latest
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
