@@ -1,3 +1,3 @@
-module github.com/crutyoldsysadmin/artifactory-demo
+module github.com/cruftyoldsysadmin/artifactory-demo
 
 go 1.19

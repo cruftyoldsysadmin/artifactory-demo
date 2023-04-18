@@ -19,7 +19,7 @@ Refreshing my knowledge on working with artifactory by writing a github workflow
   * `jfrog rt go build`
   * `export GOPROXY="https://${RT_USER}:${RT_APIKEY}@nomadop.jfrog.io/artifactory/api/go/go-local"` 
 * Test artifactory retrieval
-  * `go get -u  github.com/crutyoldsysadmin/artifactory-demo`
+  * `go get -u  github.com/cruftyoldsysadmin/artifactory-demo`
 
 ## GitHub Actions
 
