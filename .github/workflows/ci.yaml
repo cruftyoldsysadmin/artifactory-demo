@@ -41,7 +41,7 @@ jobs:
         id: tag_version
       - name: publish to artifactory
         if: success()
-        uses: nomadops/jfrog-cli-action@v0.0.9
+        uses: nomadops/jfrog-cli-action@v0.0.10
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
@@ -58,7 +58,7 @@ jobs:
           body: ${{ steps.tag_version.outputs.changelog }} 
       - name: download from artifactory
         if: success()
-        uses: nomadops/jfrog-cli-action@v0.0.9
+        uses: nomadops/jfrog-cli-action@v0.0.10
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
