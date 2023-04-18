@@ -41,7 +41,7 @@ jobs:
         id: tag_version
       - name: publish to artifactory
         if: success()
-        uses: nomadops/jfrog-cli-action@v0.0.16
+        uses: nomadops/jfrog-cli-action@v0.0.17
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
@@ -49,6 +49,7 @@ jobs:
           #user: ${{ secrets.RT_USER }}
           user: cruftyold@gmail.com
           args: gp ${{ steps.tag_version.outputs.new_tag }} --server-id rt-server
+          #args: gp --server-id rt-server --deps=ALL --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }} ./dist/artifactory-demo
       - name: Create a GitHub release
         if: success()
         uses: ncipollo/release-action@v1
@@ -56,12 +57,12 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }} 
-      - name: download from artifactory
+      - name: search from artifactory
         if: success()
-        uses: nomadops/jfrog-cli-action@v0.0.16
+        uses: nomadops/jfrog-cli-action@v0.0.17
         with:
           url: ${{ secrets.RT_URL }}
           credentials type: 'username'
           password: ${{ secrets.RT_APIKEY }}
           user: ${{ secrets.RT_USER }}
-          args: rt dl "/artifactory-demo/${{ steps.tag_version.outputs.new_tag }}/artifactory-demo" "dist/artifactory-demo" --build-name=artifactory-demo --build-number=${{ steps.tag_version.outputs.new_tag }}
+          args: rt s "go-local/github.com/cruftyoldsysadmin/artifactory-demo/@v/${{ steps.tag_version.outputs.new_tag }}.zip" --include-dirs --recursive
