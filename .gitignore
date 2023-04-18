@@ -25,3 +25,4 @@ vendor/
 .vscode/
 .DS_Store
 dist/artifactory-demoartifactory-demo
+dist/*
